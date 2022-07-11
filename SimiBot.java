@@ -37,27 +37,31 @@ public class SimiBot extends JFrame implements ActionListener
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 		setResizable(false);
-		getContentPane().setBackground(Color.cyan);
+		getContentPane().setBackground(Color.WHITE);
 		field=new JTextField();
 		send=new JButton("Enter");
 		send.setFont(new Font("Serif",Font.BOLD,12));
 		send.setBackground(Color.white);
+
 		send.setBounds(700,520,70,35);
 		add(send);
 		//For Text area
 		area.setEditable(false);
-		area.setBackground(Color.white);
+		area.setBackground(Color.black);
+		area.setForeground(Color.green);
+		area.setSelectedTextColor(Color.green);
 		add(area);
 		area.setFont(new Font("Serif",Font.PLAIN,20));
 		//scrollbar
-		sp=new JScrollPane(area,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		sp.setBounds(10,20,775,470);
+		sp=new JScrollPane(area,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		sp.setBounds(10,20,765,470);
 		add(sp);
 			
 		//For TextField
 		field.setSize(690,35);
 		field.setLocation(10,520);
 		field.setForeground(Color.black);
+		
 		field.setFont(new Font("Serif",Font.BOLD,25));
 		add(field);
 		
@@ -151,16 +155,13 @@ public class SimiBot extends JFrame implements ActionListener
 				bot("That's why i'm here for..");
 			}
 		}
-		else if(message.contains("what") && message.contains("name"))
+		else if(message.contains("what") || message.contains("name"))
 		{
 			if(message.contains("your"))
 			{
-				bot("I'm Bot...");
+				bot("I'm SimiBot...");
 			}
-			if(message.contains("my"))
-			{
-				bot("Your name is Ajaysinh");
-			}
+
 		}
 		else if(message.contains("change"))
 		{
@@ -237,42 +238,27 @@ public class SimiBot extends JFrame implements ActionListener
 			}
 			
 		}
-		else
+		else 
 		{
-			try
-			{
+			
+			
 				try
 				{
 					URL url=new URL("https://google.co.in");
 					URLConnection connection=url.openConnection();
 					connection.connect();
+					bot("Sorry can't understand");
 					bot("Here some results for you ...");
 					java.awt.Desktop.getDesktop().browse(java.net.URI.create("http://www.google.com/search?hl=en&q="+message.replace(" ", "+")+"&btnG=Google+Search"));
 			
 				}
 				catch(Exception ee)
 				{
-					bot("Connect with internet connection for get better results...");
+					bot("Connect with internet connection for get better results..."); // No connection 
 				}
 				
-			}
-			catch(Exception eee)
-			{
-				int num=random.nextInt(3);
-				if(num==0)
-				{	
-					
-				bot("Sorry ,I can't understand you !");
-				}
-				else if(num==1)
-				{
-					bot("Sorry,I don't understand ");
-				}
-				else if(num==2)
-				{
-					bot("My apologies...I don't understand ");
-				}
-			}
+			
+		
 		}
 		
 	}
